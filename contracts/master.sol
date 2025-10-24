@@ -23,7 +23,8 @@ contract FETokenOz is ERC20, Ownable {
     // Fungsi untuk menambah suplai (Minting) - Dibatasi hanya untuk pemilik
     function mint(address to, uint256 amount) public onlyOwner {
         require(to != address(0), "ERC20: mint ke alamat nol ditolak");
-        _mint(to, amount);
+        uint256 amountInSmallestUnit = amount * 10**decimals();
+        _mint(to, amountInSmallestUnit);
     }
     
     // Semua fungsi wajib lainnya (transfer, balanceOf, approve, dll.) 
