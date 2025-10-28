@@ -267,6 +267,13 @@
 			},
 			{
 				"inputs": [],
+				"name": "claimReward",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "decimals",
 				"outputs": [
 					{
@@ -666,11 +673,11 @@
 			]
 		},
 		"contracts/reward.sol": {
-			"keccak256": "0xb6110c8b0b2499f8ccf3c963ea16a22e7949f8528ca94b866fc3f9265ddb48ab",
+			"keccak256": "0xf955e8dcd6f395dec2aae0f3d447f01417aa8a7e485ccf060a6652652c35b509",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://55a671a45ef96b8f76e93040ed31d9d87dfef94f761d00b931ece6261e5a0f60",
-				"dweb:/ipfs/QmejgmogtRt8PUoxPv45sXQikQPNbdXTyDXXCZu45yED1f"
+				"bzz-raw://d78f7af6a69295b238f43de149668725097c93e203bec9c410b04ef0bb323805",
+				"dweb:/ipfs/QmUMA5TMEURgBJUEhQMEELgMeWifUsfgnkqrxACEaeogKF"
 			]
 		}
 	},

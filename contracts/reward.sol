@@ -9,7 +9,7 @@ contract RewardToken is ERC20, ERC2771Context, Ownable {
     address private immutable FORWARDER_ADDRESS;
 
     constructor(address trustedForwarder, address initialOwner)
-        ERC20("Reward Token", "RWD")
+        ERC20("Reward 1 Token", "RWD 1")
         ERC2771Context(trustedForwarder)
         Ownable(initialOwner)
     {
@@ -61,5 +61,15 @@ contract RewardToken is ERC20, ERC2771Context, Ownable {
     function increaseSupply(uint256 amount) public onlyOwner {
         uint256 amountInSmallestUnit = amount * 10**decimals();
         _mint(owner(), amountInSmallestUnit);
+    }
+
+    function claimReward() public {
+        require(
+            isTrustedForwarder(msg.sender) || _msgSender() == owner(), 
+            "RewardToken: Must use a Trusted Forwarder or be the Owner."
+        );
+
+        uint256 rewardAmount = 100 * 10**decimals();
+        _mint(_msgSender(), rewardAmount);
     }
 }
