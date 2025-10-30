@@ -16,6 +16,11 @@
 						"internalType": "address",
 						"name": "initialOwner",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "initialSupply",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -266,8 +271,32 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
 				"name": "claimReward",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user_address",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "claimRewardPublic",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -283,6 +312,37 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "decreaseMyToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user_address",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "decreaseMyTokenPublic",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -315,24 +375,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "account",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "mint",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -673,11 +715,11 @@
 			]
 		},
 		"contracts/reward.sol": {
-			"keccak256": "0xf955e8dcd6f395dec2aae0f3d447f01417aa8a7e485ccf060a6652652c35b509",
+			"keccak256": "0x5c390e3ad773422a0045b9c164d2b87394ef767a75eea37c8c3d926e926232e7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d78f7af6a69295b238f43de149668725097c93e203bec9c410b04ef0bb323805",
-				"dweb:/ipfs/QmUMA5TMEURgBJUEhQMEELgMeWifUsfgnkqrxACEaeogKF"
+				"bzz-raw://4728203fd1ee65a8786cee619318ff8ac518e650efc2029cb0617742ec6c6a98",
+				"dweb:/ipfs/QmULg17wworeVJhpkBRakHccrSvngrc4nJn7qDgRqs1MsF"
 			]
 		}
 	},

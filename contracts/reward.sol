@@ -8,12 +8,14 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract RewardToken is ERC20, ERC2771Context, Ownable {
     address private immutable FORWARDER_ADDRESS;
 
-    constructor(address trustedForwarder, address initialOwner)
+    constructor(address trustedForwarder, address initialOwner, uint256 initialSupply)
         ERC20("Reward 1 Token", "RWD 1")
         ERC2771Context(trustedForwarder)
         Ownable(initialOwner)
     {
+        uint256 supply = initialSupply * 10**decimals();
         FORWARDER_ADDRESS = trustedForwarder;
+        _mint(owner(), supply);
     }
 
     // Tambahkan fungsi override ini
@@ -53,23 +55,49 @@ contract RewardToken is ERC20, ERC2771Context, Ownable {
         return super.isTrustedForwarder(forwarder);
     }
 
-    function mint(address account, uint256 amount) public onlyOwner {
-        uint256 amountInSmallestUnit = amount * 10**decimals();
-        _mint(account, amountInSmallestUnit);
+    function convertAmount(uint256 amount) private view returns (uint256) {
+        return amount * 10**decimals();
     }
 
     function increaseSupply(uint256 amount) public onlyOwner {
-        uint256 amountInSmallestUnit = amount * 10**decimals();
+        uint256 amountInSmallestUnit = convertAmount(amount);
         _mint(owner(), amountInSmallestUnit);
     }
 
-    function claimReward() public {
+    function claimReward(uint256 amount) public {
         require(
             isTrustedForwarder(msg.sender) || _msgSender() == owner(), 
             "RewardToken: Must use a Trusted Forwarder or be the Owner."
         );
 
-        uint256 rewardAmount = 100 * 10**decimals();
-        _mint(_msgSender(), rewardAmount);
+        uint256 rewardAmount = convertAmount(amount);
+        _transfer(owner(), _msgSender(), rewardAmount);
+    }
+
+    function claimRewardPublic(address user_address, uint256 amount) public onlyOwner {
+        require(user_address != address(0), "New wallet cannot be the zero address");
+        address sender = msg.sender;
+
+        uint256 rewardAmount = convertAmount(amount);
+
+        _transfer(sender, user_address, rewardAmount);
+    }
+
+    function decreaseMyToken(uint256 amount) public {
+        require(
+            isTrustedForwarder(msg.sender) || _msgSender() == owner(), 
+            "RewardToken: Must use a Trusted Forwarder or be the Owner."
+        );
+
+        uint256 rewardAmount = convertAmount(amount);
+        _transfer(_msgSender(), owner(), rewardAmount);
+    }
+
+    function decreaseMyTokenPublic(address user_address, uint256 amount) public {
+        require(user_address != address(0), "New wallet cannot be the zero address");
+        address sender = msg.sender;
+
+        uint256 rewardAmount = convertAmount(amount);
+        _transfer(user_address, sender, rewardAmount);
     }
 }
