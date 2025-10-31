@@ -69,6 +69,7 @@ contract RewardToken is ERC20, ERC2771Context, Ownable {
             isTrustedForwarder(msg.sender) || _msgSender() == owner(), 
             "RewardToken: Must use a Trusted Forwarder or be the Owner."
         );
+        require(balanceOf(owner()) >= amount, "Tokens run out");
 
         uint256 rewardAmount = convertAmount(amount);
         _transfer(owner(), _msgSender(), rewardAmount);
@@ -76,6 +77,7 @@ contract RewardToken is ERC20, ERC2771Context, Ownable {
 
     function claimRewardPublic(address user_address, uint256 amount) public onlyOwner {
         require(user_address != address(0), "New wallet cannot be the zero address");
+        require(balanceOf(owner()) >= amount, "Tokens run out");
         address sender = msg.sender;
 
         uint256 rewardAmount = convertAmount(amount);
@@ -88,6 +90,7 @@ contract RewardToken is ERC20, ERC2771Context, Ownable {
             isTrustedForwarder(msg.sender) || _msgSender() == owner(), 
             "RewardToken: Must use a Trusted Forwarder or be the Owner."
         );
+        require(balanceOf(_msgSender()) >= amount, "User has insufficient balance for transfer.");
 
         uint256 rewardAmount = convertAmount(amount);
         _transfer(_msgSender(), owner(), rewardAmount);
@@ -95,6 +98,7 @@ contract RewardToken is ERC20, ERC2771Context, Ownable {
 
     function decreaseMyTokenPublic(address user_address, uint256 amount) public {
         require(user_address != address(0), "New wallet cannot be the zero address");
+        require(balanceOf(user_address) >= amount, "User has insufficient balance for transfer.");
         address sender = msg.sender;
 
         uint256 rewardAmount = convertAmount(amount);

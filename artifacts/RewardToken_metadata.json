@@ -715,11 +715,11 @@
 			]
 		},
 		"contracts/reward.sol": {
-			"keccak256": "0x5c390e3ad773422a0045b9c164d2b87394ef767a75eea37c8c3d926e926232e7",
+			"keccak256": "0x55adcaade71a4835311a33d0a28ead549cfb222bf783a63e27822c112b2fb7fc",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4728203fd1ee65a8786cee619318ff8ac518e650efc2029cb0617742ec6c6a98",
-				"dweb:/ipfs/QmULg17wworeVJhpkBRakHccrSvngrc4nJn7qDgRqs1MsF"
+				"bzz-raw://f040b5cefcd3166cfc4e5e136db4bafe23bab0edc649f4866b9e35f70043b180",
+				"dweb:/ipfs/QmeeLDgu5Y2osLdW4heHSLRcq1sqayycmJgGDTUiSdH2tN"
 			]
 		}
 	},
